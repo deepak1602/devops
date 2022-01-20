@@ -1,0 +1,25 @@
+
+# creating a mysql user and a group
+groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+
+# Dependencies Install
+yum search libaio
+yum install -y libaio
+yum -y install numactl
+yum install -y libnuma
+yum install -y ld-linux.so.2
+yum install -y libaio.so.1
+yum install -y libnuma.so.1
+yum install -y libstdc++.so.6
+yum install -y libtinfo.so.5
+yum remove -y mariadb-libs
+yum install -y wget
+yum clean all
+yum makecache
+yum install -y libstdc++*
+yum install -y libstdc++.so.6
+yum install -y libtinfo.so.5
+yum install -y glibc.i686
+yum install -y mysql-client-core-8.0
+yum install -y ncurses-compat-libs
