@@ -1,8 +1,8 @@
-echo "# creating a mysql user and a group"
+# creating a mysql user and a group
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
 
-echo "# Dependencies Install"
+# Dependencies Install
 yum search libaio >> /tmp/mysqlinstall.log
 yum install -y libaio >> /tmp/mysqlinstall.log
 yum -y install numactl >> /tmp/mysqlinstall.log
@@ -23,7 +23,7 @@ yum install -y glibc.i686 >> /tmp/mysqlinstall.log
 yum install -y mysql-client-core-8.0 >> /tmp/mysqlinstall.log
 yum install -y ncurses-compat-libs >> /tmp/mysqlinstall.log
 
-echo "## we will take all in /software directory"
+# we will take all in /software directory
 
 mkdir -p /software
 cd /software
@@ -72,7 +72,7 @@ tmpdir          = /software/mysql/temp
 rm -rf /software/mysql/data/
 cd /software/mysql/bin/
 
-echo"# generate Meta data"
+# generate Meta data
 ./mysqld --initialize --user=mysql --basedir=/software/mysql --datadir=/software/mysql/data  --tmpdir=/software/mysql/temp
 
 #start Mysql
