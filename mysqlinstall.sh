@@ -1,7 +1,12 @@
+echo "Installing MySQL ....................."
+echo "Welcome to MySQL"
+
+echo " 1st step : creating a mysql user and a group "
 # creating a mysql user and a group
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
 
+echo " 2nd step : Dependencies Installation in progress ....."
 # Dependencies Install
 yum search libaio >> /tmp/mysqlinstall.log
 yum install -y libaio >> /tmp/mysqlinstall.log
@@ -24,13 +29,17 @@ yum install -y mysql-client-core-8.0 >> /tmp/mysqlinstall.log
 yum install -y ncurses-compat-libs >> /tmp/mysqlinstall.log
 
 # we will take all in /software directory
-
+echo " 3rd step : we will take all in /software directory in progress ....."
 mkdir -p /software
 cd /software
 
+
+echo " 4th step : Download of MySQL 8 in progress ....."
 wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.24-linux-glibc2.12-i686.tar.xz
 tar xvf mysql-8.0.24-linux-glibc2.12-i686.tar.xz
 mv mysql-8.0.24-linux-glibc2.12-i686 mysql
+
+echo " 5th step : Important directory (data, log temp build for MySQL 8 in progress) ....."
 
 mkdir -p /software/mysql/data
 mkdir -p /software/mysql/temp
@@ -38,6 +47,7 @@ mkdir -p /software/mysql/local
 
 chown -R mysql:mysql /software/mysql
 
+echo " 6th step : cnf file configuration is in progress ....."
 touch /software/my.cnf
 
 ## create a conf file
@@ -72,18 +82,22 @@ tmpdir          = /software/mysql/temp
 rm -rf /software/mysql/data/
 cd /software/mysql/bin/
 
+
+echo " 7th step : Generate Meta data is in progress ....."
 # generate Meta data
 ./mysqld --initialize --user=mysql --basedir=/software/mysql --datadir=/software/mysql/data  --tmpdir=/software/mysql/temp
 
+
+echo " 8th step : Starting MySQL ....."
 #start Mysql
-#./mysqld_safe --user=mysql &
-#cd /software/mysql/support-files
-#cp mysql.server /etc/init.d/mysql
+./mysqld_safe --user=mysql &
+cd /software/mysql/support-files
+cp mysql.server /etc/init.d/mysql
 
 #set the path
-#export PATH=$PATH:/software/mysql/bin/
-#pwd
+export PATH=$PATH:/software/mysql/bin/
+pwd
 
 ## then manually
 ## update datadir and basedir on /etc/init.d/mysql
-## mysql_secure_installation
+./software/mysql/bin/mysql_secure_installation
