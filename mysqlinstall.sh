@@ -1,5 +1,4 @@
-
-echo ""# creating a mysql user and a group"
+echo "# creating a mysql user and a group"
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
 
