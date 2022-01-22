@@ -64,7 +64,7 @@ skip-external-locking
 
 
 # Bin, DATA , TEMP, STORAGE #
-basedir         = /software/mysql/local
+basedir         = /software/mysql
 datadir         = /software/mysql/data
 tmpdir          = /software/mysql/temp
 " >> /software/my.cnf
