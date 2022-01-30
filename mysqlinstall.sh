@@ -67,8 +67,8 @@ socket                         = /software/mysql/mysql.sock
 # GENERAL #
 user                           = mysql
 default-storage-engine         = InnoDB
-#socket                         = /software/mysql/mysql.sock
-#pid-file                       = /software/mysql/mysqld.pid
+socket                         = /software/mysql/mysql.sock
+pid-file                       = /software/mysql/mysqld.pid
 #skip-external-locking
 
 
@@ -134,23 +134,20 @@ echo " 7th step : Generate Meta data is in progress ....."
 
 echo " 8th step : Starting MySQL ....."
 #start Mysql
-./mysqld_safe --user=mysql & &>> /tmp/mysqlinstall.log
+./mysqld_safe --user=mysql &
 cd /software/mysql/support-files
 cp mysql.server /etc/init.d/mysql
 sed -i '46d' /etc/init.d/mysql
 sed -i '47d' /etc/init.d/mysql
+sed -i '48d' /etc/init.d/mysql
 sed -i '46i basedir=/software/mysql' /etc/init.d/mysql
 sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
 
 
 #set the path
 export PATH=$PATH:/software/mysql/bin/
-pwd
 export PATH=$PATH:/software/mysql/bin/
-pwd
 export PATH=$PATH:/software/mysql/bin/
-pwd
-
 
 ## then manually
 ## update datadir and basedir on /etc/init.d/mysql
@@ -202,12 +199,12 @@ mysql_secure_installation
   echo $SECURE_MYSQL
 
 echo " 10th Step : Installing MySQL Repo"
-yum install -y  https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
+yum install -y  https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm &>> /tmp/mysqlinstall.log
 
 echo " 11th Step : Installing MySQL Router"
-yum install mysql-router -y
+yum install mysql-router -y &>> /tmp/mysqlinstall.log
 
 echo " 12th Step : Installing MySQL Shell"
-yum install mysql-shell -y
+yum install mysql-shell -y &>> /tmp/mysqlinstall.log
 
 echo " 13th step : MySQL mysql_secure_installation is completed , The password is 'Password@123' , Please reset the same before go live ....."
