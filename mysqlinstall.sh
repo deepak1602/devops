@@ -10,23 +10,23 @@ echo " 2nd step : Dependencies Installation in progress ....."
 # Dependencies Install
 yum search libaio &>> /tmp/mysqlinstall.log
 yum install -y libaio &>> /tmp/mysqlinstall.log
-#yum -y install numactl &>> /tmp/mysqlinstall.log
-#yum install -y libnuma &>> /tmp/mysqlinstall.log
-#yum install -y ld-linux.so.2 &>> /tmp/mysqlinstall.log
-#yum install -y libaio.so.1 &>> /tmp/mysqlinstall.log
-#yum install -y libnuma.so.1 &>> /tmp/mysqlinstall.log
+yum -y install numactl &>> /tmp/mysqlinstall.log
+yum install -y libnuma &>> /tmp/mysqlinstall.log
+yum install -y ld-linux.so.2 &>> /tmp/mysqlinstall.log
+yum install -y libaio.so.1 &>> /tmp/mysqlinstall.log
+yum install -y libnuma.so.1 &>> /tmp/mysqlinstall.log
 yum install -y libstdc++.so.6 &>> /tmp/mysqlinstall.log
 yum install -y libtinfo.so.5 &>> /tmp/mysqlinstall.log
 yum remove -y mariadb-libs &>> /tmp/mysqlinstall.log
 yum install -y wget &>> /tmp/mysqlinstall.log
 yum clean all &>> /tmp/mysqlinstall.log
 yum makecache &>> /tmp/mysqlinstall.log
-#yum install -y libstdc++* &>> /tmp/mysqlinstall.log
+yum install -y libstdc++* &>> /tmp/mysqlinstall.log
 yum install -y libstdc++.so.6 &>> /tmp/mysqlinstall.log
 yum install -y libtinfo.so.5 &>> /tmp/mysqlinstall.log
-#yum install -y glibc.i686 &>> /tmp/mysqlinstall.log
+yum install -y glibc.i686 &>> /tmp/mysqlinstall.log
 yum install -y mysql-client-core-8.0 &>> /tmp/mysqlinstall.log
-yum install -y ncurses-compat-libs &>> /tmp/mysqlinstall.log
+um install -y ncurses-compat-libs &>> /tmp/mysqlinstall.log
 yum install -y expect &>> /tmp/mysqlinstall.log
 
 # we will take all in /software directory
@@ -79,8 +79,8 @@ skip-external-locking
 basedir         = /software/mysql
 datadir         = /software/mysql/data
 tmpdir          = /software/mysql/temp
+log-error       = /software/mysql/log
 
-log_error       = /software/mysql/log
 " >> /software/my.cnf
 
 
