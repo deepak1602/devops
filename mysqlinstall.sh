@@ -8,6 +8,7 @@ useradd -r -g mysql -s /bin/false mysql
 
 echo " 2nd step : Dependencies Installation in progress ....."
 # Dependencies Install
+yum install -y pssh &>> /tmp/mysqlinstall.log
 yum search libaio &>> /tmp/mysqlinstall.log
 yum install -y libaio &>> /tmp/mysqlinstall.log
 yum -y install numactl &>> /tmp/mysqlinstall.log
