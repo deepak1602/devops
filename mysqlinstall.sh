@@ -210,6 +210,6 @@ yum install mysql-shell -y &>> /tmp/mysqlinstall.log
 echo " 13th step : MySQL mysql_secure_installation is completed , The password is 'Password@123' , Please reset the same before go live ....."
 
 
-echo -e "\033[0;32mImportant Step to perform"
-echo -e "\033[0;34mSet the Password for MySQL"
-echo -e "\033[0;34mMost of the configuration in cnf is commented , Please go through /etc/my.cnf and enable as per requirement"
+echo -e "\033[0;32mImportant Step to perform\n"
+echo -e "\033[0;34mSet the Password for MySQL\n"
+echo -e "\033[0;34mMost of the configuration in cnf is commented , Please go through /etc/my.cnf and enable as per requirement\n"
