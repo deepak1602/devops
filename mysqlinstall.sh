@@ -145,9 +145,10 @@ sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
 
 
 #set the path
-export PATH=$PATH:/software/mysql/bin/
-export PATH=$PATH:/software/mysql/bin/
-export PATH=$PATH:/software/mysql/bin/
+#export PATH=$PATH:/software/mysql/bin/
+echo 'export PATH="/software/mysql/bin:$PATH"' >> ~/.bash_profile
+source ~/.bashrc
+echo $PATH
 
 ## then manually
 ## update datadir and basedir on /etc/init.d/mysql
