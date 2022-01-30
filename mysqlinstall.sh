@@ -213,7 +213,7 @@ yum install mysql-shell -y &>> /tmp/mysqlinstall.log
 echo " 13th step : MySQL mysql_secure_installation is completed , The password is 'Password@123' , Please reset the same before go live ....."
 
 echo " 14th step : Please set the Env Variable ....."
-
+echo " 14th step : Please set the Env Variable .....You just have to set the name and value of your environment variable."
 echo "Enter variable name: "
 read variable_name
 echo "Enter variable value: "
