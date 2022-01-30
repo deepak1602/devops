@@ -116,6 +116,12 @@ pwd
 ## update datadir and basedir on /etc/init.d/mysql
 echo " 9th step : MySQL mysql_secure_installation is in progress....."
 cd /software/mysql/bin/
+echo "Waiting for 30 seconds..."
+sleep 30
+echo "MySQL Installation is completed "
+
+echo "MySQL Process is active or not ps -grep mysql"
+ps -ef | grep mysql
 mysql_secure_installation
 
 
