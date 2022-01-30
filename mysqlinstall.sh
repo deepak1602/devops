@@ -81,43 +81,43 @@ tmpdir          = /software/mysql/temp
 
 
 # General settings - ensure the binary log is enabled, disable all non-transactional storage engines except CSV (used for logs), etc.
-port = 3306
+# port = 3306
 log_bin
-disabled_storage_engines = MyISAM,BLACKHOLE,FEDERATED,ARCHIVE
+# disabled_storage_engines = MyISAM,BLACKHOLE,FEDERATED,ARCHIVE
 #ssl
-auto_increment_increment = 7
-auto_increment_offset = 1
+# auto_increment_increment = 7
+# auto_increment_offset = 1
 
 # Binary Log and Replication
-binlog_transaction_dependency_tracking = WRITESET
-server_id = 2
-binlog_format = ROW
-binlog_rows_query_log_events = ON
-gtid_mode = ON
-enforce_gtid_consistency = ON
-log_slave_updates = ON
-master_info_repository = TABLE
-relay_log_info_repository = TABLE
-relay_log_recovery = ON
-transaction_write_set_extraction = XXHASH64
-binlog_checksum = NONE
+# binlog_transaction_dependency_tracking = WRITESET
+# server_id = 2
+# binlog_format = ROW
+# binlog_rows_query_log_events = ON
+# gtid_mode = ON
+# enforce_gtid_consistency = ON
+# log_slave_updates = ON
+# master_info_repository = TABLE
+# relay_log_info_repository = TABLE
+# relay_log_recovery = ON
+# transaction_write_set_extraction = XXHASH64
+# binlog_checksum = NONE
 
 # Group Replication
-group_replication = FORCE_PLUS_PERMANENT
-group_replication_start_on_boot = OFF
-group_replication_local_address = mysql-1:13306
-group_replication_group_seeds = mysql-2:13306,mysql-3:13306
-group_replication_group_name = c19a9bd9-9772-11e8-b677-000c29679891
+# group_replication = FORCE_PLUS_PERMANENT
+# group_replication_start_on_boot = OFF
+# group_replication_local_address = mysql-1:13306
+# group_replication_group_seeds = mysql-2:13306,mysql-3:13306
+# group_replication_group_name = c19a9bd9-9772-11e8-b677-000c29679891
 
 
 #group_replication_local_address = 13306
-group_replication_ip_whitelist = mysql-1,mysql-2,mysql-3
+# group_replication_ip_whitelist = mysql-1,mysql-2,mysql-3
 
 # Enable the Group Replication plugin
-plugin-load = group_replication.so
+# plugin-load = group_replication.so
 
 # Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links=0
+# symbolic-links=0
 
 " >> /software/my.cnf
 
