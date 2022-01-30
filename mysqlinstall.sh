@@ -89,7 +89,7 @@ cd /software/mysql/bin/
 
 echo " 7th step : Generate Meta data is in progress ....."
 # generate Meta data
-./mysqld --initialize --user=mysql --basedir=/software/mysql --datadir=/software/mysql/data  --tmpdir=/software/mysql/temp >> /tmp/mysqlinstall.log
+./mysqld --initialize --user=mysql --basedir=/software/mysql --datadir=/software/mysql/data  --tmpdir=/software/mysql/temp &>> /tmp/mysqlinstall.log
 
 
 echo " 8th step : Starting MySQL ....."
@@ -114,6 +114,7 @@ pwd
 
 ## then manually
 ## update datadir and basedir on /etc/init.d/mysql
+echo " 9th step : MySQL mysql_secure_installation is in progress....."
 cd /software/mysql/bin/
 mysql_secure_installation
 
@@ -153,3 +154,5 @@ mysql_secure_installation
   ")
 
   echo $SECURE_MYSQL
+
+echo " 10th step : MySQL mysql_secure_installation is completed , The password is 'Password@123' , Please reset the same before go live ....."
