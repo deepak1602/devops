@@ -36,8 +36,8 @@ cd /software
 
 
 echo " 4th step : Download of MySQL 8 in progress ....."
-wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.24-linux-glibc2.12-i686.tar.xz
-tar xvf mysql-8.0.24-linux-glibc2.12-i686.tar.xz
+wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.24-linux-glibc2.12-i686.tar.xz >> /tmp/mysqlinstall.log
+tar xvf mysql-8.0.24-linux-glibc2.12-i686.tar.xz >> /tmp/mysqlinstall.log
 mv mysql-8.0.24-linux-glibc2.12-i686 mysql
 
 echo " 5th step : Important directory (data, log temp build for MySQL 8 in progress) ....."
@@ -97,6 +97,7 @@ echo " 8th step : Starting MySQL ....."
 ./mysqld_safe --user=mysql &
 cd /software/mysql/support-files
 cp mysql.server /etc/init.d/mysql
+sed -i -e 's/'basedir='/'basedir=/software/mysql'' /etc/init.d/mysql
 
 #set the path
 export PATH=$PATH:/software/mysql/bin/
