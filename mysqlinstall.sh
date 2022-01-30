@@ -143,7 +143,7 @@ sed -i '48d' /etc/init.d/mysql
 sed -i '46i basedir=/software/mysql' /etc/init.d/mysql
 sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
 
-
+yum install -y mysql &>> /tmp/mysqlinstall.log
 systemctl enable mysql.service
 
 
@@ -154,6 +154,8 @@ export PATH=$PATH:/software/mysql/bin/
 export PATH=$PATH:/software/mysql/bin/
 export PATH=$PATH:/software/mysql/bin/
 echo $PATH
+
+
 
 ## then manually
 ## update datadir and basedir on /etc/init.d/mysql
