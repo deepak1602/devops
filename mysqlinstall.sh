@@ -146,8 +146,7 @@ sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
 
 #set the path
 #export PATH=$PATH:/software/mysql/bin/
-#echo 'export PATH="/software/mysql/bin:$PATH"' >> ~/.bash_profile
-#source ~/.bashrc
+
 export PATH=$PATH:/software/mysql/bin/
 export PATH=$PATH:/software/mysql/bin/
 export PATH=$PATH:/software/mysql/bin/
@@ -213,8 +212,30 @@ yum install mysql-shell -y &>> /tmp/mysqlinstall.log
 
 echo " 13th step : MySQL mysql_secure_installation is completed , The password is 'Password@123' , Please reset the same before go live ....."
 
+echo " 14th step : Please set the Env Variable ....."
+
+echo "Enter variable name: "
+read variable_name
+echo "Enter variable value: "
+read variable_value
+echo "adding " $variable_name " to environment variables: " $variable_value
+echo "export "$variable_name"="$variable_value>>~/.bashrc
+echo $variable_name"="$variable_value>>~/.profile
+echo $variable_name"="$variable_value>>/etc/environment
+source ~/.bashrc
+source ~/.profile
+echo "do you want to restart your computer to apply changes in /etc/environment file? yes(y)no(n)"
+read restart
+case $restart in
+    y) sudo shutdown -r 0;;
+    n) echo "don't forget to restart your computer manually";;
+esac
+
+
 echo -e "\033[1;34m***********************************************************************************************************\n"
 echo -e "\033[1;32mImportant Step to perform\n"
 echo -e "\033[1;34mSet the Password for MySQL\n"
 echo -e "\033[1;34mMost of the configuration in cnf is commented , Please go through /etc/my.cnf and enable as per requirement\n"
 echo -e "\033[1;32m*********************************************HAVE A GREAT DAY *********************************************\n"
+
+exit
