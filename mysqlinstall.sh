@@ -28,6 +28,7 @@ yum install -y glibc.i686 &>> /tmp/mysqlinstall.log
 yum install -y mysql-client-core-8.0 &>> /tmp/mysqlinstall.log
 um install -y ncurses-compat-libs &>> /tmp/mysqlinstall.log
 yum install -y expect &>> /tmp/mysqlinstall.log
+yum install -y libcrypto.so* &>> /tmp/mysqlinstall.log
 
 # we will take all in /software directory
 echo " 3rd step : we will take all in /software directory in progress ....."
