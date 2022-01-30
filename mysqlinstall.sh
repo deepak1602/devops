@@ -148,6 +148,7 @@ sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
 #export PATH=$PATH:/software/mysql/bin/
 echo 'export PATH="/software/mysql/bin:$PATH"' >> ~/.bash_profile
 source ~/.bashrc
+export PATH=$PATH:/software/mysql/bin/
 echo $PATH
 
 ## then manually
