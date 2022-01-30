@@ -143,7 +143,7 @@ sed -i '48d' /etc/init.d/mysql
 sed -i '46i basedir=/software/mysql' /etc/init.d/mysql
 sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
 
-systemctl enable mysqld.service
+
 systemctl enable mysql.service
 
 
