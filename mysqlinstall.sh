@@ -84,6 +84,8 @@ log-error       = /software/mysql/log
 
 " >> /software/my.cnf
 
+cp /software/my.cnf /etc/
+
 
 cd /software/mysql/bin/
 
