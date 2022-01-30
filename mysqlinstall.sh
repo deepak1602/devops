@@ -10,21 +10,21 @@ echo " 2nd step : Dependencies Installation in progress ....."
 # Dependencies Install
 yum search libaio >> /tmp/mysqlinstall.log
 yum install -y libaio >> /tmp/mysqlinstall.log
-yum -y install numactl >> /tmp/mysqlinstall.log
-yum install -y libnuma >> /tmp/mysqlinstall.log
-yum install -y ld-linux.so.2 >> /tmp/mysqlinstall.log
-yum install -y libaio.so.1 >> /tmp/mysqlinstall.log
-yum install -y libnuma.so.1 >> /tmp/mysqlinstall.log
+#yum -y install numactl >> /tmp/mysqlinstall.log
+#yum install -y libnuma >> /tmp/mysqlinstall.log
+#yum install -y ld-linux.so.2 >> /tmp/mysqlinstall.log
+#yum install -y libaio.so.1 >> /tmp/mysqlinstall.log
+#yum install -y libnuma.so.1 >> /tmp/mysqlinstall.log
 yum install -y libstdc++.so.6 >> /tmp/mysqlinstall.log
 yum install -y libtinfo.so.5 >> /tmp/mysqlinstall.log
 yum remove -y mariadb-libs >> /tmp/mysqlinstall.log
 yum install -y wget >> /tmp/mysqlinstall.log
 yum clean all >> /tmp/mysqlinstall.log
 yum makecache >> /tmp/mysqlinstall.log
-yum install -y libstdc++* >> /tmp/mysqlinstall.log
+#yum install -y libstdc++* >> /tmp/mysqlinstall.log
 yum install -y libstdc++.so.6 >> /tmp/mysqlinstall.log
 yum install -y libtinfo.so.5 >> /tmp/mysqlinstall.log
-yum install -y glibc.i686 >> /tmp/mysqlinstall.log
+#yum install -y glibc.i686 >> /tmp/mysqlinstall.log
 yum install -y mysql-client-core-8.0 >> /tmp/mysqlinstall.log
 yum install -y ncurses-compat-libs >> /tmp/mysqlinstall.log
 yum install -y expect >> /tmp/mysqlinstall.log
@@ -36,9 +36,9 @@ cd /software
 
 
 echo " 4th step : Download of MySQL 8 in progress ....."
-wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.24-linux-glibc2.12-i686.tar.xz >> /tmp/mysqlinstall.log
-tar xvf mysql-8.0.24-linux-glibc2.12-i686.tar.xz >> /tmp/mysqlinstall.log
-mv mysql-8.0.24-linux-glibc2.12-i686 mysql
+wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.28-linux-glibc2.12-x86_64.tar.xz >> /tmp/mysqlinstall.log
+tar xvf mysql-8.0.28-linux-glibc2.12-x86_64.tar.xz >> /tmp/mysqlinstall.log
+mv mysql-8.0.28-linux-glibc2.12-x86_64 mysql
 
 echo " 5th step : Important directory (data, log temp build for MySQL 8 in progress) ....."
 
