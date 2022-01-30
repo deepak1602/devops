@@ -89,7 +89,7 @@ cd /software/mysql/bin/
 
 echo " 7th step : Generate Meta data is in progress ....."
 # generate Meta data
-./mysqld --initialize --user=mysql --basedir=/software/mysql --datadir=/software/mysql/data  --tmpdir=/software/mysql/temp
+./mysqld --initialize --user=mysql --basedir=/software/mysql --datadir=/software/mysql/data  --tmpdir=/software/mysql/temp >> /tmp/mysqlinstall.log
 
 
 echo " 8th step : Starting MySQL ....."
@@ -97,7 +97,11 @@ echo " 8th step : Starting MySQL ....."
 ./mysqld_safe --user=mysql &
 cd /software/mysql/support-files
 cp mysql.server /etc/init.d/mysql
-sed -i -e 's/'basedir='/'basedir=/software/mysql'' /etc/init.d/mysql
+sed -i '46d' /etc/init.d/mysql
+sed -i '47d' /etc/init.d/mysql
+sed -i '46i basedir=/software/mysql' /etc/init.d/mysql
+sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
+
 
 #set the path
 export PATH=$PATH:/software/mysql/bin/
@@ -105,43 +109,42 @@ pwd
 
 ## then manually
 ## update datadir and basedir on /etc/init.d/mysql
-./software/mysql/bin/mysql_secure_installation
+cd software/mysql/bin/
+mysql_secure_installation
 
-MYSQL=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $13}')
-MYSQL_ROOT_PASSWORD="Dp@123456"
 
-SECURE_MYSQL=$(expect -c "
+  MYSQL_ROOT_PASSWORD='Password@123'
+  MYSQL=$(grep 'temporary password' /tmp/mysqlinstall.log | awk '{print $13}')
 
-set timeout 10
-spawn mysql_secure_installation
+  SECURE_MYSQL=$(expect -c "
 
-expect "Enter password for user root:"
-send "$MYSQL\r"
+  set timeout 10
+  spawn mysql_secure_installation
 
-expect "Change the password for root ? ((Press y|Y for Yes, any other key for No) :"
-send "y\r"
+  expect \"Enter password for user root:\"
+  send \"$MYSQL\r\"
+  expect \"New password:\"
+  send \"$MYSQL_ROOT_PASSWORD\r\"
+  expect \"Re-enter new password:\"
+  send \"$MYSQL_ROOT_PASSWORD\r\"
+  expect \"Change the password for root ?\ ((Press y\|Y for Yes, any other key for No) :\"
+  send \"y\r\"
+  send \"$MYSQL\r\"
+  expect \"New password:\"
+  send \"$MYSQL_ROOT_PASSWORD\r\"
+  expect \"Re-enter new password:\"
+  send \"$MYSQL_ROOT_PASSWORD\r\"
+  expect \"Do you wish to continue with the password provided?\(Press y\|Y for Yes, any other key for No) :\"
+  send \"y\r\"
+  expect \"Remove anonymous users?\(Press y\|Y for Yes, any other key for No) :\"
+  send \"y\r\"
+  expect \"Disallow root login remotely?\(Press y\|Y for Yes, any other key for No) :\"
+  send \"n\r\"
+  expect \"Remove test database and access to it?\(Press y\|Y for Yes, any other key for No) :\"
+  send \"y\r\"
+  expect \"Reload privilege tables now?\(Press y\|Y for Yes, any other key for No) :\"
+  send \"y\r\"
+  expect eof
+  ")
 
-expect "New password:"
-send "$MYSQL_ROOT_PASSWORD\r"
-
-expect "Re-enter new password:"
-send "$MYSQL_ROOT_PASSWORD\r"
-
-expect "Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) :"
-send "y\r"
-
-expect "Remove anonymous users? (Press y|Y for Yes, any other key for No) :"
-send "y\r"
-
-expect "Disallow root login remotely? (Press y|Y for Yes, any other key for No) :"
-send "y\r"
-
-expect "Remove test database and access to it? (Press y|Y for Yes, any other key for No) :"
-send "y\r"
-
-expect "Reload privilege tables now? (Press y|Y for Yes, any other key for No) :"
-send "y\r"
-expect eof
-")
-
-echo "$SECURE_MYSQL"
+  echo $SECURE_MYSQL
