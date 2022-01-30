@@ -83,7 +83,7 @@ tmpdir          = /software/mysql/temp
 log_error       = /software/mysql/log
 " >> /software/my.cnf
 
-rm -rf /software/mysql/data/
+
 cd /software/mysql/bin/
 
 
@@ -94,7 +94,7 @@ echo " 7th step : Generate Meta data is in progress ....."
 
 echo " 8th step : Starting MySQL ....."
 #start Mysql
-./mysqld_safe --user=mysql &
+./mysqld_safe --user=mysql & &>> /tmp/mysqlinstall.log
 cd /software/mysql/support-files
 cp mysql.server /etc/init.d/mysql
 sed -i '46d' /etc/init.d/mysql
