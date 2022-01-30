@@ -167,11 +167,12 @@ echo "MySQL Installation is completed "
 
 echo "MySQL Process is active or not ps -grep mysql"
 ps -ef | grep mysql
+
+MYSQL=$(grep 'temporary password' /tmp/mysqlinstall.log | awk '{print $13}')
 mysql_secure_installation
 
 
   MYSQL_ROOT_PASSWORD='Password@123'
-  MYSQL=$(grep 'temporary password' /tmp/mysqlinstall.log | awk '{print $13}')
 
   SECURE_MYSQL=$(expect -c "
 
