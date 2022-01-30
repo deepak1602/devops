@@ -106,10 +106,15 @@ sed -i '47i datadir=/software/mysql/data' /etc/init.d/mysql
 #set the path
 export PATH=$PATH:/software/mysql/bin/
 pwd
+export PATH=$PATH:/software/mysql/bin/
+pwd
+export PATH=$PATH:/software/mysql/bin/
+pwd
+
 
 ## then manually
 ## update datadir and basedir on /etc/init.d/mysql
-cd software/mysql/bin/
+cd /software/mysql/bin/
 mysql_secure_installation
 
 
