@@ -200,4 +200,13 @@ mysql_secure_installation
 
   echo $SECURE_MYSQL
 
-echo " 10th step : MySQL mysql_secure_installation is completed , The password is 'Password@123' , Please reset the same before go live ....."
+echo " 10th Step : Installing MySQL Repo"
+yum install -y  https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
+
+echo " 11th Step : Installing MySQL Router"
+yum install mysql-router -y
+
+echo " 12th Step : Installing MySQL Shell"
+yum install mysql-shell -y
+
+echo " 13th step : MySQL mysql_secure_installation is completed , The password is 'Password@123' , Please reset the same before go live ....."
